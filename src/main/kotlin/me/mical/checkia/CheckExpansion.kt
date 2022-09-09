@@ -24,23 +24,23 @@ object CheckExpansion : PlaceholderExpansion {
         val options = args.split("_")
         when (options[0].lowercase()) {
             "get" -> {
-                if (options.size != 2) {
+                if (options.size <= 1) {
                     return ""
                 }
                 val user = player.player!!
-                val id = options[1]
+                val id = options.drop(1).joinToString("_")
                 var i = 0
                 user.inventory.contents.filterNotNull().filter { it.isSimilar(CustomStack.getInstance(id)?.itemStack) }.forEach { i += it.amount }
                 return i.toString()
             }
             "has" -> {
-                if (options.size != 3) {
+                if (options.size <= 2) {
                     return ""
                 }
                 val user = player.player!!
-                val namespacedKey = options[1]
+                val namespacedKey = options.drop(2).joinToString("_")
                 try {
-                    val amount = options[2].toInt()
+                    val amount = options[1].toInt()
                     var i = 0
                     user.inventory.contents.filterNotNull().filter { it.isSimilar(CustomStack.getInstance(namespacedKey)?.itemStack) }.forEach { i += it.amount }
                     return (i >= amount).toString()
