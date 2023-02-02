@@ -6,6 +6,6 @@ import taboolib.common.platform.function.info
 object CheckIA : Plugin() {
 
     override fun onEnable() {
-        info("Successfully running ExamplePlugin!")
+        info("Successfully loaded CheckIA-Expansion! Author: 米擦亮(Mical)")
     }
 }
